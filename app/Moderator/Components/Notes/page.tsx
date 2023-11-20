@@ -13,7 +13,6 @@ import {
 const Notes = () => {
   return (
     <RichTextEditorComponent
-      height="300px"
       toolbarSettings={{
         items: [
           'Bold',

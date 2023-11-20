@@ -240,8 +240,8 @@ const Student = () => {
   };
 
   return (
-    <main>
-      <nav className="p-5 flex justify-between place-items-center items-center mx-auto w-[100vw] shadow-lg">
+    <main className="flex flex-col justify-center place-items-center items-center mx-auto w-full">
+      <nav className="p-5 flex justify-between place-items-center items-center mx-auto relative  w-[100vw] shadow-lg">
         <div className="flex items-center w-[80%] mx-auto justify-around">
           <div className="flex bg-[#e0f7fa] items-center rounded-full">
             <BsSearch className="w-4 ml-3 mr-1 h-4 text-slate-800" />
@@ -282,11 +282,11 @@ const Student = () => {
           </div>
         </div>
       </nav>
-      <section className="grid my-6 justify-center mx-auto grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <section className="grid my-6 items-center place-items-center justify-center mx-auto w-full grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         {table.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col justify-center place-items-center items-center bg-indigo-400 rounded-lg w-[300px]"
+            className="flex flex-col justify-center mx-auto place-items-center items-center bg-indigo-400 rounded-lg w-[300px]"
           >
             <div className="bg-indigo-500 flex justify-between mx-auto w-full p-3 rounded-t-lg">
               <h3 className="font-semibold text-lg ">

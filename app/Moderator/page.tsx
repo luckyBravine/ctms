@@ -1,13 +1,17 @@
 import Navbar from "./Navbar/page";
 import { MdOutlineClass } from "react-icons/md";
 import { TbDeviceWatchStats } from "react-icons/tb";
+import Line from "./Components/Line/page";
+import Timetable from "./Components/Timetable/page";
+import Calender from "./Components/Calender/page";
+import Notes from "./Components/Notes/page";
 // import '../node_modules/@syncfusion/ej2-layouts/styles/material.css';
 
 export default function Moderator() {
   return (
     <main className="flex flex-col justify-center w-[100vw] mx-auto">
       <Navbar />
-      <section className="grid my-6 justify-center w-[100vw] mx-auto grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {/* <section className="grid my-6 justify-center w-[90%] mx-auto grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
           <h1 className="font-bold text-lg my-2">Add New Timetable</h1>
           <form action="">
@@ -35,10 +39,14 @@ export default function Moderator() {
           <h1 className="font-bold text-lg my-2">3 Classes</h1>
         </div>
       </section>
-      <section>
-        <div></div>
-        <div></div>
-      </section>
+      <section className="flex flex-col md:flex-row justify-center mx-auto w-[90%] ">
+        <div className="w-[100%]">
+          <Line />
+        </div>
+      </section> */}
+      {/* <Calender /> */}
+      {/* <Notes /> */}
+      <Timetable />
     </main>
   );
 }

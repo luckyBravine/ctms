@@ -13,7 +13,7 @@ import {
   CommandModel,
 } from '@syncfusion/ej2-react-grids';
 // import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-// import { data } from './datasource';
+import table from "./data"
 
 const Timetable = () => {
   const [searchText, setSearchText] = useState('');
@@ -28,62 +28,60 @@ const Timetable = () => {
   };
   const groupSettings = { columns: ['EmployeeID'] };
 
-  const commandOptions: CommandModel = {
+  const commandOptions = {
     commands: [
       { type: 'Edit', buttonOption: { content: 'Edit' } },
       { type: 'Delete', buttonOption: { content: 'Delete' } },
     ],
-  };
-
+  } as CommandModel;
   const toolbarOptions = ['Search'];
 
   const searchOptions = {
-    fields: ['OrderID', 'CustomerID', 'EmployeeID', 'Freight', 'ShipCountry'],
+    fields: ['Morning', 'Mid-Morning', 'Afternoon', 'Time', 'Lectures'],
   };
 
-  const searchHandler = (args) => {
-    setSearchText(args.target.value);
-    gridInstance.search(searchText);
-  };
+  // const searchHandler = (args: any ) => {
+  //   setSearchText(args.target.value);
+  //   gridInstance.search(searchText);
+  // };
 
   return (
     <div>
-      <input
+      {/* <input
         type="text"
         placeholder="Search..."
         onChange={searchHandler}
         value={searchText}
-      />
+      /> */}
       <GridComponent
-        dataSource={data}
+        dataSource={table}
         allowPaging={true}
         pageSettings={pageSettings}
         filterSettings={filterSettings}
         allowGrouping={true}
         groupSettings={groupSettings}
         allowSorting={true}
-        sortSettings={sortSettings}
         allowFiltering={true}
         height={400}
         toolbar={toolbarOptions}
         searchSettings={searchOptions}
-        ref={(grid) => setGridInstance(grid)}
+        
       >
         <ColumnsDirective>
-          <ColumnDirective field="OrderID" width="100" textAlign="Right" />
-          <ColumnDirective field="CustomerID" width="100" />
-          <ColumnDirective field="EmployeeID" width="100" textAlign="Right" />
+          <ColumnDirective field="Morning" width="100" textAlign="Right" />
+          <ColumnDirective field="Mid-Morning" width="100" />
+          <ColumnDirective field="Evening" width="100" textAlign="Right" />
           <ColumnDirective
-            field="Freight"
+            field="Time"
             width="100"
             format="C2"
             textAlign="Right"
           />
-          <ColumnDirective field="ShipCountry" width="100" />
+          <ColumnDirective field="Lecturer" width="100" />
           <ColumnDirective
-            headerText="Actions"
+            headerText="Venue"
             width="150"
-            commands={commandOptions.commands}
+            
           />
         </ColumnsDirective>
         <Inject

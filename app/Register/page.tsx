@@ -28,7 +28,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Classmate Timetable Management System
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -142,6 +142,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              className="bg-blue-500"
             >
               Sign Up
             </Button>
