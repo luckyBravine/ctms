@@ -1,0 +1,106 @@
+"use client";
+import Image from "next/image";
+import Login from "./Login/page";
+import Register from "./Register/page";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Chip from "@mui/material/Chip";
+import Badge from "@mui/material/Badge";
+import Button from "@mui/material/Button";
+import { AiOutlinePrinter, AiOutlineBell } from "react-icons/ai";
+import { FiFileText } from "react-icons/fi";
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+
+export default function Home() {
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
+  return (
+    <main>
+      {/* <Login /> */}
+      {/* <Register /> */}
+      <nav>
+        <h1>CTMS</h1>
+        <div className="flex justify-evenly">
+          <div>
+            <Stack spacing={2} sx={{ width: 300 }}>
+              <Autocomplete
+                freeSolo
+                id="free-solo-2-demo"
+                disableClearable
+                options={top100Films.map((option) => option.title)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Search input"
+                    InputProps={{
+                      ...params.InputProps,
+                      type: "search",
+                    }}
+                  />
+                )}
+              />
+            </Stack>
+          </div>
+          <div>
+            <Box sx={{ color: "action.active" }}>
+              <Badge color="secondary" variant="dot">
+                <AiOutlineBell className="w-[20px] h-[20px]" />
+              </Badge>
+            </Box>
+          </div>
+          <div>
+            <Box sx={{ minWidth: 120 }} className="h-5 rounded-full">
+              <FormControl fullWidth  className="h-5 rounded-full">
+                <InputLabel id="demo-simple-select-label">School of</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  label="School of"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>Computing and IT</MenuItem>
+                  <MenuItem value={20}>Education</MenuItem>
+                  <MenuItem value={30}>Engineering</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+          <div>
+            <Stack spacing={2} direction="row">
+              <Button className="bg-slate-200 rounded-full">
+                <AiOutlinePrinter className="w-[20px] h-[20px]" />
+                <span className="text-base ml-2 "> Generate Report</span>
+              </Button>
+            </Stack>
+          </div>
+          <div>
+            <Stack direction="row" spacing={1} className="items-center">
+              <Chip label="SC211/1088/2019" icon={<TextSnippetIcon className="w-[20px] h-[20px]"/>}/>
+            </Stack>
+          </div>
+        </div>
+      </nav>
+    </main>
+  );
+}
+
+const top100Films = [
+  { title: "The Shawshank Redemption", year: 1994 },
+  { title: "The Godfather", year: 1972 },
+  { title: "The Godfather: Part II", year: 1974 },
+  { title: "The Dark Knight", year: 2008 },
+  { title: "12 Angry Men", year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: "Pulp Fiction", year: 1994 },
+];
