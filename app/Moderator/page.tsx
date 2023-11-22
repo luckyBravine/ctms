@@ -1,52 +1,66 @@
+
+"use client";
 import Navbar from "./Navbar/page";
 import { MdOutlineClass } from "react-icons/md";
 import { TbDeviceWatchStats } from "react-icons/tb";
-import Line from "./Components/Line/page";
-import Timetable from "./Components/Timetable/page";
-import Calender from "./Components/Calender/page";
-import Notes from "./Components/Notes/page";
-// import '../node_modules/@syncfusion/ej2-layouts/styles/material.css';
+
+import { AiOutlinePrinter } from "react-icons/ai";
+import { BsTable, BsKanbanFill } from "react-icons/bs";
+import { PiNotePencilDuotone } from "react-icons/pi";
+import { BsFileEarmarkText } from "react-icons/bs";
+import { IoMdHome } from "react-icons/io";
+import Line from "./Line/page";
+import ModeratorLayout from "./layout";
 
 export default function Moderator() {
+  
   return (
-    <main className="flex flex-col justify-center w-[100vw] mx-auto">
-      <Navbar />
-      {/* <section className="grid my-6 justify-center w-[90%] mx-auto grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-        <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
-          <h1 className="font-bold text-lg my-2">Add New Timetable</h1>
-          <form action="">
-            <input type="file" />
-          </form>
-        </div>
-        <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
-          <div className="flex p-2 mx-auto justify-between">
-            <TbDeviceWatchStats />
-            <span className="font-bold text-base text-gray-600">Current Session</span>
+    <main className="flex flex-col justify-center w-[100vw] mx-auto oveflow-x-hidden">
+      <ModeratorLayout>
+        <section className="grid my-6 justify-center w-[90%] mx-auto grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+          <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
+            <h1 className="font-bold text-lg my-2">Add New Timetable</h1>
+            <form action="">
+              <input type="file" />
+            </form>
           </div>
-          <h1 className="font-bold text-lg my-2">Amm 102</h1>
-          <div>
-            <span className="font-bold text-base text-gray-600">1000hrs - 1300hrs</span>
-            <span className="font-bold text-base text-gray-600 ">Tution Block</span>
+          <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
+            <div className="flex p-2 mx-auto justify-between">
+              <TbDeviceWatchStats />
+              <span className="font-bold text-base text-gray-600">
+                Current Session
+              </span>
+            </div>
+            <h1 className="font-bold text-lg my-2">Amm 102</h1>
+            <div>
+              <span className="font-bold text-base text-gray-600">
+                1000hrs - 1300hrs
+              </span>
+              <span className="font-bold text-base text-gray-600 ">
+                Tution Block
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
-          <div className="flex p-2 mx-auto justify-between">
-            <MdOutlineClass />
-            <span className="font-bold text-base text-gray-600 ">
-              Today's Classes
-            </span>
+          <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
+            <div className="flex p-2 mx-auto justify-between">
+              <MdOutlineClass />
+              <span className="font-bold text-base text-gray-600 ">
+                Today's Classes
+              </span>
+            </div>
+            <h1 className="font-bold text-lg my-2">3 Classes</h1>
           </div>
-          <h1 className="font-bold text-lg my-2">3 Classes</h1>
-        </div>
-      </section>
-      <section className="flex flex-col md:flex-row justify-center mx-auto w-[90%] ">
-        <div className="w-[100%]">
-          <Line />
-        </div>
-      </section> */}
-      {/* <Calender /> */}
-      {/* <Notes /> */}
-      <Timetable />
+        </section>
+        <section className="flex flex-col md:flex-row justify-center mx-auto w-[90%] ">
+          <div className="w-[100%]">
+            <Line />
+          </div>
+        </section>
+        {/* <Calender /> */}
+        {/* <Calender /> */}
+        {/* <Notes /> */}
+        {/* <Timetable /> */}
+      </ModeratorLayout>
     </main>
   );
 }
