@@ -15,7 +15,7 @@ import ModeratorLayout from "./layout";
 export default function Moderator() {
   
   return (
-    <main className="flex flex-col justify-center w-[100vw] mx-auto oveflow-x-hidden">
+    <main className="flex flex-col justify-center w-[100vw] mx-auto overflow-x-hidden">
       <ModeratorLayout>
         <section className="grid my-6 justify-center w-[90%] mx-auto grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           <div className="p-3 bg-slate-200 flex-col justify-center shadow-lg">
@@ -51,15 +51,12 @@ export default function Moderator() {
             <h1 className="font-bold text-lg my-2">3 Classes</h1>
           </div>
         </section>
-        <section className="flex flex-col md:flex-row justify-center mx-auto w-[90%] ">
+        <section className="flex flex-col md:flex-row justify-center mx-auto w-[90%]">
           <div className="w-[100%]">
             <Line />
           </div>
         </section>
-        {/* <Calender /> */}
-        {/* <Calender /> */}
-        {/* <Notes /> */}
-        {/* <Timetable /> */}
+       
       </ModeratorLayout>
     </main>
   );

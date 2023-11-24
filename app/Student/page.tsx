@@ -1,11 +1,13 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import dr_patel from "../../public/dr_patel.jpg";
 import dr_Njeri from "../../public/dr_Njeri.jpg";
 import { BsSearch, BsFileEarmarkText } from "react-icons/bs";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoMdNotificationsOutline, IoMdHome } from "react-icons/io";
 import { AiOutlinePrinter } from "react-icons/ai";
 import Select from "react-select";
+import Link from "next/link";
 const table = [
   {
     morning: {
@@ -243,6 +245,13 @@ const Student = () => {
     <main className="flex flex-col justify-center place-items-center items-center mx-auto w-full">
       <nav className="p-5 flex justify-between place-items-center items-center mx-auto relative  w-[100vw] shadow-lg">
         <div className="flex items-center w-[80%] mx-auto justify-around">
+        <Link
+            className="bg-[#e0f7fa] p-1 rounded-full flex justify-center items-center"
+            href="/"
+          >
+            <IoMdHome className="relative w-6 h-6 ml-3 mr-1 text-slate-800" />
+            <span className=" mr-1 text-base text-slate-500">Home</span>
+          </Link>
           <div className="flex bg-[#e0f7fa] items-center rounded-full">
             <BsSearch className="w-4 ml-3 mr-1 h-4 text-slate-800" />
             <input
@@ -282,7 +291,7 @@ const Student = () => {
           </div>
         </div>
       </nav>
-      <section className="grid my-6 items-center place-items-center justify-center mx-auto w-full grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <section className="grid my-6 items-center place-items-center justify-center oveflow-x-hidden mx-auto w-full grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         {table.map((item, index) => (
           <div
             key={index}

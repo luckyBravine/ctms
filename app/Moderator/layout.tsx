@@ -1,15 +1,11 @@
 "use client";
 import { Inter } from "next/font/google";
-import Navbar from "./Navbar/page";
 import Link from "next/link";
 import { AiOutlinePrinter } from "react-icons/ai";
 import { BsTable, BsKanbanFill } from "react-icons/bs";
 import { PiNotePencilDuotone } from "react-icons/pi";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import router from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,14 +25,13 @@ export default function ModeratorLayout({
             <IoMdHome className="relative w-6 h-6 ml-3 mr-1 text-slate-800" />
             <span className=" mr-1 text-base text-slate-500">Home</span>
           </Link>
-          <button
+          <Link
             className="bg-[#e0f7fa] p-1 rounded-full flex justify-center items-center"
-            type="button"
-            onClick={() => router.push("/Moderator/Timetable")}
+            href="/Moderator/Timetable"
           >
             <BsTable className="relative w-6 h-6 ml-3 mr-1 text-slate-800" />
             <span className=" mr-1 text-base text-slate-500">Timetable</span>
-          </button>
+          </Link>
           <Link
             className="bg-[#e0f7fa] p-1 rounded-full flex justify-center items-center"
             href="/Moderator/Graph"

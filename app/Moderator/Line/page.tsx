@@ -12,6 +12,8 @@ import {
 } from "@syncfusion/ej2-react-charts";
 import { firstYear, secondYear, thirdYear, fourthYear } from "./data";
 
+
+
 const Line = () => {
   const marker = {
     visible: true,
