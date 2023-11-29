@@ -3,7 +3,7 @@
 import Navbar from "./Navbar/page";
 import { MdOutlineClass } from "react-icons/md";
 import { TbDeviceWatchStats } from "react-icons/tb";
-
+import { registerLicense } from "@syncfusion/ej2-base";
 import { AiOutlinePrinter } from "react-icons/ai";
 import { BsTable, BsKanbanFill } from "react-icons/bs";
 import { PiNotePencilDuotone } from "react-icons/pi";
@@ -11,6 +11,9 @@ import { BsFileEarmarkText } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
 import Line from "./Line/page";
 import ModeratorLayout from "./layout";
+registerLicense(
+  "Ngo9BigBOggjHTQxAR8/V1NHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWH5feXRVRGFeWE1yV0M="
+);
 
 export default function Moderator() {
   

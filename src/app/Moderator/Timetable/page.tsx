@@ -1,8 +1,10 @@
+"use client"
 import React from 'react';
 import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page } from '@syncfusion/ej2-react-grids';
 
 import { employeesData, employeesGrid } from '../dummy';
 import Header from '../Header/page';
+// Ngo9BigBOggjHTQxAR8/V1NHaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZiWH1YcH1WRWFVUkdyVg==
 
 const Employees = () => {
   const toolbarOptions = ['Search'];

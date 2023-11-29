@@ -51,7 +51,7 @@ export default function Home() {
                   <h2 className="text-lg font-semibold font-poppins">
                     Student's Page
                   </h2>
-                  <p className="font-poppins text-base text-stone-600 ">
+                  <p className="font-poppins text-sm text-stone-600 ">
                     Get Updated on timely schedules for your classes, cats and
                     exams
                   </p>
@@ -73,8 +73,8 @@ export default function Home() {
                   <h2 className="text-lg font-semibold font-poppins">
                     Moderator's Page
                   </h2>
-                  <p className="font-poppins text-base text-stone-600 ">
-                    Restricted to authorized personel only
+                  <p className="font-poppins text-sm text-stone-600 ">
+                    Restricted access to authorized personel only.
                   </p>
                 </div>
                 <Link

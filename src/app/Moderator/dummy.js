@@ -1,6 +1,6 @@
 import { GrLocation } from 'react-icons/gr';
-import dr_patel from "../../public/dr_patel.jpg";
-import dr_Njeri from "../../public/dr_patel.jpg";
+import dr_patel from "../../../public/dr_patel.jpg";
+import dr_Njeri from "../../../public/dr_patel.jpg";
 export const gridOrderImage = (props) => (
   <div>
     <img

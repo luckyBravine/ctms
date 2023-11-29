@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import dr_patel from "../../public/dr_patel.jpg";
-import dr_Njeri from "../../public/dr_Njeri.jpg";
+import dr_patel from "../../../public/dr_patel.jpg";
+import dr_Njeri from "../../../public/dr_Njeri.jpg";
 import { BsSearch, BsFileEarmarkText } from "react-icons/bs";
 import { IoMdNotificationsOutline, IoMdHome } from "react-icons/io";
 import { AiOutlinePrinter } from "react-icons/ai";
 import Select from "react-select";
+import Notification from "./Components/Notification/Notification"
 import Link from "next/link";
 const table = [
   {
@@ -17,7 +18,7 @@ const table = [
       time: "0700hrs-1000hrs",
       venue: "Tution Block",
       img: dr_Njeri,
-      lec: "Dr.Patel Sinh",
+      lec: "Dr.Patel Sinh",  
     },
     mid_morning: {
       date_name: "Mon",
@@ -54,7 +55,7 @@ const table = [
       unit: "AMM 102",
       time: "0700hrs-1000hrs",
       venue: "Tution Block",
-      img: dr_Njeri,
+      img: dr_patel,
       lec: "Dr.Patel Sighn",
     },
     evening: {
@@ -188,9 +189,9 @@ const table = [
 const getDayTime = () => {
   const currentHour = new Date().getHours();
 
-  if (currentHour < 12) {
+  if (currentHour < 10) {
     return "morning";
-  } else if (currentHour < 17) {
+  } else if (currentHour < 13) {
     return "mid_morning";
   } else {
     return "evening";
@@ -204,6 +205,9 @@ const Student = () => {
     Array(table.length).fill(null)
   );
   const [currentTimeOfDay, setCurrentTimeOfDay] = useState(getDayTime());
+
+  const [show, setShow] = useState(false)
+  const [close, setClose] = useState(false)
 
   const handleItemClick = (index: any, timeOfDay: string) => {
     const newSelectedItems = [...selectedItems];
@@ -241,6 +245,8 @@ const Student = () => {
     }),
   };
 
+  // 
+
   return (
     <main className="flex flex-col justify-center place-items-center items-center mx-auto w-full">
       <nav className="p-5 flex justify-between place-items-center items-center mx-auto relative  w-[100vw] shadow-lg">
@@ -261,10 +267,12 @@ const Student = () => {
             />
           </div>
           <div>
-            <button className="bg-[#e0f7fa] p-1 rounded-full w-7 h-7 flex justify-center items-center">
+            <button className="bg-[#e0f7fa] p-1 rounded-full w-7 h-7 flex justify-center items-center relative" onClick={() => setShow(!show)} >
               <IoMdNotificationsOutline className="relative w-6 h-6 text-slate-800" />
-              <div className="absolute bg-green-400 w-3 h-3 rounded-full top-6 ml-3"></div>
+              {show ? <div className="absolute bg-green-400 w-3 h-3 rounded-full top-[-3px] ml-4"></div> : null}
+              
             </button>
+            { show ? null : <Notification /> }
           </div>
           <Select
             options={searchOptions}
@@ -291,13 +299,13 @@ const Student = () => {
           </div>
         </div>
       </nav>
-      <section className="grid my-6 items-center place-items-center justify-center oveflow-x-hidden mx-auto w-full grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <section className="grid my-6 items-center place-items-center justify-center overflow-x-hidden mx-auto w-[100vw] grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         {table.map((item, index) => (
           <div
             key={index}
             className="flex flex-col justify-center mx-auto place-items-center items-center bg-indigo-400 rounded-lg w-[300px]"
           >
-            <div className="bg-indigo-500 flex justify-between mx-auto w-full p-3 rounded-t-lg">
+            <div className="bg-indigo-500 flex justify-between mx-auto w-full p-3 rounded-t-lg"> 
               <h3 className="font-semibold text-lg ">
                 {item[currentTimeOfDay].date_name}
               </h3>

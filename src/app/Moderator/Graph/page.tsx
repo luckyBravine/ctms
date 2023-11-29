@@ -1,4 +1,5 @@
 // pages/linegraph.js
+"use client";
 import React from 'react';
 import {
   Category,
