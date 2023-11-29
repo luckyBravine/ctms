@@ -20,7 +20,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import {useRouter} from "next/navigation"
 import Link from "next/link"
-import {axios} from 'axios'
+import {Axios} from 'axios'
 
 function Copyright(props: any) {
   return (
