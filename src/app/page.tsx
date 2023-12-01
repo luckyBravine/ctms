@@ -4,8 +4,8 @@ import { registerLicense } from "@syncfusion/ej2-base";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
-import sheduler from '../public/sheduler.jpg';
-import admin from '../public/admin.jpg'
+import sheduler from '../../public/sheduler.jpg';
+import admin from '../../public/admin.jpg'
 
 registerLicense(
   "Ngo9BigBOggjHTQxAR8/V1NHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWH5feXRVRGFeWE1yV0M="

@@ -24,7 +24,7 @@ const Line = () => {
   };
 
   return (
-    <ChartComponent id="charts">
+    <ChartComponent id="charts" className="lg:w-full md:w-[90%] w-[80%] flex justify-center">
       <Inject services={[LineSeries, Legend, Tooltip, DataLabel, Category]} />
       <SeriesCollectionDirective>
         <SeriesDirective
