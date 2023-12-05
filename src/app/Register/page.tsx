@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -18,9 +18,12 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import {useRouter} from "next/navigation"
-import Link from "next/link"
-import {Axios} from 'axios'
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import axios  from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { POST } from "../api/users/register/router";
 
 function Copyright(props: any) {
   return (
@@ -44,19 +47,44 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [rank, setRank] = React.useState("");
+  const router = useRouter();
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setRank(event.target.value as string);
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    roles: "",
+  });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+  const [loading, setLoading] = React.useState(false);
+  const onRegister = async () => {
+    try{
+      setLoading(true)
+      const response = await axios.post("/api/users/register/router.ts", user)
+      console.log("Signup Success", response.data)
+
+      router.push("/Login")
+    }catch(error: any){
+      console.log("Registration Failed",error.message)
+      toast.error(error.message)
+    }finally{
+      setLoading(false)
+    }
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  useEffect(() => {
+    if (
+      user.email.length > 0 &&
+      user.password.length > 0 &&
+      user.firstName.length > 0 &&
+      user.lastName.length > 0
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -74,14 +102,9 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            { loading ? "Processing" : "Sign up" }
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" noValidate onSubmit={onRegister} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -92,6 +115,10 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={user.firstName}
+                  onChange={(e) =>
+                    setUser({ ...user, firstName: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -102,6 +129,10 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={user.lastName}
+                  onChange={(e) =>
+                    setUser({ ...user, lastName: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -112,6 +143,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={user.email}
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -123,6 +156,10 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={user.password}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
                 />
               </Grid>
               <Box sx={{ minWidth: 120 }} className="mt-3 ml-4">
@@ -131,9 +168,11 @@ export default function SignUp() {
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={rank}
+                    value={user.roles}
                     label="Rank"
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setUser({ ...user, roles: e.target.value })
+                    }
                   >
                     <MenuItem value={10}>Student</MenuItem>
                     <MenuItem value={20}>Moderator</MenuItem>
@@ -147,14 +186,13 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               className="bg-blue-500"
+              onClick={onRegister}
             >
-              Sign Up
+              {buttonDisabled ? "No Sign Up" : "Sign Up"}
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-center">
               <Grid item>
-                <Link href="/" >
-                  Already have an account? Sign in
-                </Link>
+                <Link href="/Login">Already have an account? Sign in</Link>
               </Grid>
             </Grid>
           </Box>

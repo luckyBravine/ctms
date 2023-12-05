@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import error from 'next/error';
 
-export async function Connect(){
+export default async function Connect(){
     try{
         mongoose.connect(process.env.MONGO_URI!)
         const connection = mongoose.connection;

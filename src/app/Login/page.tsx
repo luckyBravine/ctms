@@ -13,12 +13,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
       Classmate Timetable Management System
       </Link>{' '}
       {new Date().getFullYear()}
@@ -31,14 +32,12 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  })
+
+  const onLogin = async() => {}
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -58,7 +57,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={onLogin} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -68,6 +67,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={user.email}
+              onChange={(e) => setUser({...user, email: e.target.value})}
             />
             <TextField
               margin="normal"
@@ -78,6 +79,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={user.password}
+              onChange={(e) => setUser({...user, password: e.target.value})}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -99,7 +102,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/" variant="body2">
+                <Link href="/Register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -13,7 +13,7 @@ registerLicense(
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
-
+  
   useEffect(() => {
     setIsClient(true);
   }, []);
