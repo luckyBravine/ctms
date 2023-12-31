@@ -4,30 +4,47 @@ import { registerLicense } from "@syncfusion/ej2-base";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
-import sheduler from '../../public/sheduler.jpg';
-import admin from '../../public/admin.jpg'
+import sheduler from "../../public/sheduler.jpg";
+import admin from "../../public/admin.jpg";
+import { UserAuth } from "./context/AuthContext"; 
 
 registerLicense(
   "Ngo9BigBOggjHTQxAR8/V1NHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWH5feXRVRGFeWE1yV0M="
 );
 
 export default function Home() {
+const {user, googleSignIn, logOut } = UserAuth();
+  console.log(user)
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const handleSignIn = async() => {
+    try{
+      await googleSignIn();
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  const handleLogout = async() => {
+    try{
+      await logOut()
+    }catch(error){
+      console.log(error)
+    }    
+  } 
+
   return (
     <div className="flex flex-col min-h-screen bg-stone-200">
       <main className="w-full relative flex flex-col mx-auto overflow-x-hidden justify-center">
         <nav className="flex justify-around items-center mx-auto p-4 w-[100%] bg-white">
-          <header className="text-lg font-bold font-poppins">
-            CTMS
-          </header>
-          
-            <Link href="/Login">Login</Link>
-            <Link href="/Register">Register</Link>
-          
+          <header className="text-lg font-bold font-poppins">CTMS</header>
+
+          <button onClick={handleSignIn} >Login</button>
+          <button onClick={handleSignIn} >Register</button>
         </nav>
         <section className="mt-7 py-8 flex place-items-center items-center w-[90vw] mx-auto justify-center">
           <div className="w-[40%] flex flex-col mx-auto">
@@ -44,7 +61,11 @@ export default function Home() {
           <div className="flex justify-evenly w-[50%] mx-auto place-items-center">
             <div className="bg-white rounded-sm w-[280px]">
               <div className="bg-green-300 w-full rounded-t-sm h-40">
-                <Image className="object-contain" src={sheduler} alt="sheduler" />
+                <Image
+                  className="object-contain"
+                  src={sheduler}
+                  alt="sheduler"
+                />
               </div>
               <div className="flex-col my-5">
                 <div className="p-2">
@@ -57,7 +78,7 @@ export default function Home() {
                   </p>
                 </div>
                 <Link
-                  href="/Student"
+                  href="/Profile"
                   className="w-[90%] rounded-full p-2 flex justify-center mx-auto items-center place-items-center my-2 border border-blue-600 hover:bg-blue-600 hover:text-white"
                 >
                   Take A Look <HiOutlineArrowLongRight className="ml-2" />

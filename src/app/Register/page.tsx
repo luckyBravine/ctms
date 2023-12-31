@@ -4,9 +4,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-// import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -24,6 +21,13 @@ import axios  from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { POST } from "../api/users/register/router";
+// import Connect from "@/dbConfig/dbConfig";
+import User from "@/models/userModel";
+import mongoose from "mongoose";
+import { NextRequest } from "next/server";
+
+
+
 
 function Copyright(props: any) {
   return (
@@ -43,6 +47,7 @@ function Copyright(props: any) {
   );
 }
 
+
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
@@ -54,15 +59,16 @@ export default function SignUp() {
     lastName: "",
     email: "",
     password: "",
-    roles: "",
+    // roles: "",
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const [loading, setLoading] = React.useState(false);
   const onRegister = async () => {
     try{
-      setLoading(true)
-      const response = await axios.post("/api/users/register/router.ts", user)
+      setLoading(true);
+      const response = await axios.post('/api/users/register', user);
+
       console.log("Signup Success", response.data)
 
       router.push("/Login")
@@ -73,6 +79,7 @@ export default function SignUp() {
       setLoading(false)
     }
   };
+  
   useEffect(() => {
     if (
       user.email.length > 0 &&
@@ -88,6 +95,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -162,23 +170,7 @@ export default function SignUp() {
                   }
                 />
               </Grid>
-              <Box sx={{ minWidth: 120 }} className="mt-3 ml-4">
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Rank</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={user.roles}
-                    label="Rank"
-                    onChange={(e) =>
-                      setUser({ ...user, roles: e.target.value })
-                    }
-                  >
-                    <MenuItem value={10}>Student</MenuItem>
-                    <MenuItem value={20}>Moderator</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+              
             </Grid>
             <Button
               type="submit"
@@ -186,7 +178,6 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               className="bg-blue-500"
-              onClick={onRegister}
             >
               {buttonDisabled ? "No Sign Up" : "Sign Up"}
             </Button>

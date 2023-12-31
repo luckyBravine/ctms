@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "set PORT=5000 && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "PORT=8000 next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.17",
+    "@nextui-org/react": "^2.2.9",
     "@syncfusion/ej2-layouts": "^23.1.36",
     "@syncfusion/ej2-react-calendars": "^23.2.4",
     "@syncfusion/ej2-react-charts": "^23.1.44",
@@ -23,6 +24,10 @@
     "@syncfusion/ej2-react-schedule": "^23.2.4",
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
+    "diagnostics_channel": "^1.1.0",
+    "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
+    "framer-motion": "^10.16.16",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.2",
     "next": "14.0.1",

@@ -1,14 +1,17 @@
-import User from "@/src/models/userModel";
+import User from "@/models/userModel.js";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import Connect from "@/src/dbConfig/dbConfig";
+import Connect from "@/dbConfig/dbConfig.js";
+
 
 Connect();
+console.log(1)
 
 export async function POST(request: NextRequest) {
+  console.log(2)
   try {
     const reqBody = await request.json();
-    const { firstName, lastName, email, password, roles } = reqBody;
+    const { firstName, lastName, email, password } = reqBody;
 
     console.log(reqBody);
 
@@ -31,7 +34,7 @@ export async function POST(request: NextRequest) {
       lastName,
       email,
       password: hashedPassword,
-      roles,
+      // roles,
     });
 
     const savedUser = await newUser.save();

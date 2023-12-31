@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 import error from 'next/error';
 
 export default async function Connect(){

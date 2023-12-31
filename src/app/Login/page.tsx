@@ -6,14 +6,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import axios  from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function Copyright(props: any) {
   return (
@@ -32,12 +37,42 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const router = useRouter(); 
   const [user, setUser] = useState({
     email: "",
     password: ""
   })
 
-  const onLogin = async() => {}
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+  const [loading, setLoading] = React.useState(false);
+
+  const onLogin = async () => {
+    try{
+      setLoading(true);
+      const response = await axios.post('/api/users/login', user);
+
+      console.log("Login Success", response.data)
+      toast.success("Login success")
+
+      router.push("/profile")
+    }catch(error: any){
+      console.log("Login Failed",error.message)
+      toast.error(error.message)
+    }finally{
+      setLoading(false)
+    }
+  };
+  useEffect(() => {
+    if (
+      user.email.length > 0 &&
+      user.password.length > 0
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -55,7 +90,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            { loading ? "Processing" : "Sign in" }
           </Typography>
           <Box component="form" onSubmit={onLogin} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -93,16 +128,16 @@ export default function SignIn() {
               sx={{ mt: 3, mb: 2 }}
               className="bg-blue-500"
             >
-              Sign In
+             {buttonDisabled ? "No Sign In" : "Sign In"}
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/Register" variant="body2">
+                <Link href="/Register">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
