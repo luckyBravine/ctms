@@ -7,6 +7,7 @@ import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import sheduler from "../../public/sheduler.jpg";
 import admin from "../../public/admin.jpg";
 import { UserAuth } from "./context/AuthContext"; 
+import { redirect } from "react-router-dom";
 
 registerLicense(
   "Ngo9BigBOggjHTQxAR8/V1NHaF5cWWdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWH5feXRVRGFeWE1yV0M="
@@ -23,7 +24,11 @@ const {user, googleSignIn, logOut } = UserAuth();
 
   const handleSignIn = async() => {
     try{
-      await googleSignIn();
+      const signed = await googleSignIn();
+      if(!signed){
+        return redirect("/");
+      }
+      router.push("/Moderator")
     }catch(error){
       console.log(error)
     }
